@@ -100,6 +100,7 @@ export const defaultProps = {
     defaultExpanded: false,
     detailPanelColumnAlignment: 'left',
     thirdSortClick: true,
+    responsive: false,
   },
   localization: {
     grouping: {

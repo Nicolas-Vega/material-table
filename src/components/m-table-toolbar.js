@@ -99,7 +99,7 @@ export class MTableToolbar extends React.Component {
     const {classes} = this.props;
 
     return (
-      <div>
+      <>
         {this.props.columnsButton &&
           <span>
             <Tooltip title={localization.showColumnsTitle}>
@@ -167,7 +167,7 @@ export class MTableToolbar extends React.Component {
         <span>
           <this.props.components.Actions actions={this.props.actions && this.props.actions.filter(a => a.isFreeAction)} components={this.props.components} />
         </span>
-      </div>
+      </>
     );
   }
 
@@ -184,12 +184,12 @@ export class MTableToolbar extends React.Component {
 
     return (
       <div className={classes.actions}>
-        <div>
+        <>
           {this.props.selectedRows && this.props.selectedRows.length > 0
             ? this.renderSelectedActions()
             : this.renderDefaultActions()
           }
-        </div>
+        </>
       </div>
     );
   }

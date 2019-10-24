@@ -130,7 +130,7 @@ class MTableBody extends React.Component {
       emptyRowCount = this.props.pageSize - renderData.length;
     }
     return (
-      <TableBody>
+      <TableBody style={{ height:"-webkit-fill-available" }}>
         {this.props.options.filtering &&
           <this.props.components.FilterRow
             columns={this.props.columns.filter(columnDef => { return !columnDef.hidden })}

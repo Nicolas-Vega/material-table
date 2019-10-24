@@ -444,7 +444,7 @@ export default class MaterialTable extends React.Component {
         : this.state.data.length;
 
       return (
-        <Table>
+        <Table style={{ marginTop: props.options.responsive ? "auto" : "unset" }} >
           <TableFooter style={{ display: 'grid' }}>
             <TableRow>
               <props.components.Pagination
@@ -482,9 +482,16 @@ export default class MaterialTable extends React.Component {
   render() {
     const props = this.getProps();
 
+    const propsResponsive = props.options.responsive ? {
+      width: "100%",
+      height: "inherit",
+      display: "flex",
+      overflow: "auto",
+      flexDirection: "column"} : {};
+
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <props.components.Container style={{ position: 'relative', ...props.style }}>
+        <props.components.Container style={{ position: 'relative', ...props.style, ...propsResponsive }}>
           {props.options.toolbar &&
             <props.components.Toolbar
               actions={props.actions}

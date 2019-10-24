@@ -63,13 +63,26 @@ class App extends Component {
       { title: 'Id', field: 'id' },
       { title: 'First Name', field: 'first_name', defaultFilter: 'De' },
       { title: 'Last Name', field: 'last_name' },
-    ]
+    ],
+    view: "fixed"
   }
 
   render() {
     return (
       <>
+        <Grid container>
+          <Grid item xs={12}>
+            <button onClick={() => this.setState({view: "fixed"})} style={{ margin: 10 }}>
+              Fixed Tables
+            </button>
+            <button onClick={() => this.setState({view: "responsive"})} style={{ margin: 10 }}>
+              Responsive Tables
+            </button>
+          </Grid>
+        </Grid>
+
         <MuiThemeProvider theme={theme}>
+        {this.state.view === "fixed" &&
           <div style={{ maxWidth: '100%', direction }}>
             <Grid container>
               <Grid item xs={12}>
@@ -133,8 +146,29 @@ class App extends Component {
                   })
               })}
             />
-
+            </div>
+          }
+          {this.state.view === "responsive" &&
+          <div style={{ maxWidth: '100%', height: 'calc(100vh - 41px - 36px)', direction }}>
+            Responsive table!
+            <MaterialTable
+              tableRef={this.tableRef}
+              columns={this.state.columns}
+              data={this.state.data}
+              title="Demo Title"
+              options={{
+                columnsButton: true,
+                searchText: 'a6',
+                filtering: true,
+                responsive: true,
+                defaultExpanded: row => row.surname === 'C'
+              }}
+              onSearchChange={(e) => console.log("search changed: " + e)}
+              onColumnDragged={(oldPos, newPos) => console.log("Dropped column from " + oldPos + " to position " + newPos)}
+              // parentChildData={(row, rows) => rows.find(a => a.id === row.parentId)}
+            />
           </div>
+          }
         </MuiThemeProvider>
       </>
     );
